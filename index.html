@@ -1,0 +1,92 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- <link rel="manifest" href="site.webmanifest"> -->
+        <link rel="apple-touch-icon" href="icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+      <div id="app">
+
+
+        <h1>Trivia Game</h1>
+        <form id="selection">
+          <label for="category">Select a category:</label>
+          <select v-model="category" name="category">
+            <option value="any">Any Category</option>
+  		      <option value="9">General Knowledge</option>
+            <option value="10">Entertainment: Books</option>
+            <option value="11">Entertainment: Film</option>
+            <option value="12">Entertainment: Music</option>
+            <option value="13">Entertainment: Musicals &amp; Theatres</option>
+            <option value="14">Entertainment: Television</option>
+            <option value="15">Entertainment: Video Games</option>
+            <option value="16">Entertainment: Board Games</option>
+            <option value="17">Science &amp; Nature</option>
+            <option value="18">Science: Computers</option>
+            <option value="19">Science: Mathematics</option>
+            <option value="20">Mythology</option>
+            <option value="21">Sports</option>
+            <option value="22">Geography</option>
+            <option value="23">History</option>
+            <option value="24">Politics</option>
+            <option value="25">Art</option>
+            <option value="26">Celebrities</option>
+            <option value="27">Animals</option>
+            <option value="28">Vehicles</option>
+            <option value="29">Entertainment: Comics</option>
+            <option value="30">Science: Gadgets</option>
+            <option value="31">Entertainment: Japanese Anime &amp; Manga</option>
+            <option value="32">Entertainment: Cartoon &amp; Animations</option>
+          </select>
+            <!-- <label for="start">Start</label> -->
+          <input v-on:click="startQuiz" type="button" value="Start" id="start" />
+            <!-- <button id="start">Start</button> -->
+          </form>
+          <h2>You picked: {{kv[category]}} </h2>
+          <div v-if="state.started" id="qContainer" >
+            <h2> Question {{state.currentQuestion+1}} of {{url.queryAmount}}</h2>
+            <div v-if="state.isMulti">
+              <p>Multiple Choice</p>
+              <p>Category: {{questions[state.currentQuestion].category}} </p>
+              <p>Questions: <span v-html="questions[state.currentQuestion].question"></span></p>
+              <ul v-if="state.currentIsLoaded">
+                <li v-for="(answer, i) in state.currentAnswers" v-bind:id="i" v-on:click="checkAnswer($event)"><span v-html="answer"></span></li>
+                <li v-if="state.winner" style="background-color:green;">Correct!</li>
+                <li v-if="state.loser" style="background-color:red;">Wrong!</li>
+              </ul>
+              <button v-if="state.checked" v-on:click="nextQuestion">Next Question</button>
+            </div>
+            <div v-if="state.isBool">
+              <p>I havent made a template for true/false questions yet. </p>
+            </div>
+
+          </div>
+        </div>
+        <script src="js/vendor/modernizr-3.5.0.min.js"></script>
+        <script src="js/vendor/vue.js"></script>
+        <script src="js/vendor/vue-resource.js"></script>
+        <!-- <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script> -->
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+        <!-- <script>
+            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+            ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
+        </script>
+        <script src="https://www.google-analytics.com/analytics.js" async defer></script> -->
+    </body>
+</html>
