@@ -1,0 +1,22 @@
+{
+  "name": "trivia-vuejs",
+  "version": "1.0.0",
+  "description": "Trivia game front-end made with Vue JS",
+  "main": "gulpfile.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vue",
+    "js",
+    "trivia",
+    "game"
+  ],
+  "author": "jeremy poole",
+  "license": "ISC"
+}

@@ -97,8 +97,76 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+ @font-face {
+   font-family: 'roboto';
+   src: url('../fonts/roboto-bold-webfont.woff2') format('woff2'),
+   url('../fonts/roboto-bold-webfont.woff') format('woff'),
+   url('../fonts/roboto-bold-webfont.ttf') format('truetype');
+   font-weight: bold;
+   font-style: normal;
+ }
 
+ @font-face {
+   font-family: 'roboto';
+   src: url('../fonts/roboto-italic-webfont.woff2') format('woff2'),
+   url('../fonts/roboto-italic-webfont.woff') format('woff'),
+   url('../fonts/roboto-italic-webfont.ttf') format('truetype');
+   font-weight: normal;
+   font-style: italic;
+ }
 
+ @font-face {
+   font-family: 'roboto';
+   src: url('../fonts/roboto-regular-webfont.woff2') format('woff2'),
+   url('../fonts/roboto-regular-webfont.woff') format('woff'),
+   url('../fonts/roboto-regular-webfont.ttf') format('truetype');
+   font-weight: normal;
+   font-style: normal;
+ }
+
+html {
+  font-size: 1.3em;
+  font-family: "roboto";
+  color: #2a2a2a;
+}
+
+#start {
+  display: block;
+  margin-top: 20px;
+}
+
+h1,h2,li,p {
+  background-color: rgba(255,255,255,0.8);
+  border: 1px solid black;
+  border-radius: 8px;
+  text-align: center;
+}
+h1,h2,p {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+li.answers {
+  display: block;
+  list-style-type: none;
+  line-height: 1.8;
+  width: 60%;
+  margin: 10px auto;
+  /* padding-left: 3px; */
+}
+li.answers:hover, li.answers:focus {
+  box-shadow: 0 0 30px #5e5e5e
+}
+ul.answer-container {
+  padding: 0;
+  /* margin: 0 auto; */
+}
+button, input[type="button"] {
+  display: block;
+  margin: 0 auto;
+}
+.answer-span {
+
+}
 
 
 

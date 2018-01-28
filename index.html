@@ -22,58 +22,77 @@
 
 
         <h1>Trivia Game</h1>
-        <form id="selection">
-          <label for="category">Select a category:</label>
-          <select v-model="category" name="category">
-            <option value="any">Any Category</option>
-  		      <option value="9">General Knowledge</option>
-            <option value="10">Entertainment: Books</option>
-            <option value="11">Entertainment: Film</option>
-            <option value="12">Entertainment: Music</option>
-            <option value="13">Entertainment: Musicals &amp; Theatres</option>
-            <option value="14">Entertainment: Television</option>
-            <option value="15">Entertainment: Video Games</option>
-            <option value="16">Entertainment: Board Games</option>
-            <option value="17">Science &amp; Nature</option>
-            <option value="18">Science: Computers</option>
-            <option value="19">Science: Mathematics</option>
-            <option value="20">Mythology</option>
-            <option value="21">Sports</option>
-            <option value="22">Geography</option>
-            <option value="23">History</option>
-            <option value="24">Politics</option>
-            <option value="25">Art</option>
-            <option value="26">Celebrities</option>
-            <option value="27">Animals</option>
-            <option value="28">Vehicles</option>
-            <option value="29">Entertainment: Comics</option>
-            <option value="30">Science: Gadgets</option>
-            <option value="31">Entertainment: Japanese Anime &amp; Manga</option>
-            <option value="32">Entertainment: Cartoon &amp; Animations</option>
-          </select>
-            <!-- <label for="start">Start</label> -->
-          <input v-on:click="startQuiz" type="button" value="Start" id="start" />
-            <!-- <button id="start">Start</button> -->
-          </form>
-          <h2>You picked: {{kv[category]}} </h2>
+        <div v-if="!state.started" class="intro-container">
+
+
+          <form id="selection">
+            <label for="category">Select a category:</label>
+            <select v-model="category" name="category">
+              <option value="any">Any Category</option>
+    		      <option value="9">General Knowledge</option>
+              <option value="10">Entertainment: Books</option>
+              <option value="11">Entertainment: Film</option>
+              <option value="12">Entertainment: Music</option>
+              <option value="13">Entertainment: Musicals &amp; Theatres</option>
+              <option value="14">Entertainment: Television</option>
+              <option value="15">Entertainment: Video Games</option>
+              <option value="16">Entertainment: Board Games</option>
+              <option value="17">Science &amp; Nature</option>
+              <option value="18">Science: Computers</option>
+              <option value="19">Science: Mathematics</option>
+              <option value="20">Mythology</option>
+              <option value="21">Sports</option>
+              <option value="22">Geography</option>
+              <option value="23">History</option>
+              <option value="24">Politics</option>
+              <option value="25">Art</option>
+              <option value="26">Celebrities</option>
+              <option value="27">Animals</option>
+              <option value="28">Vehicles</option>
+              <option value="29">Entertainment: Comics</option>
+              <option value="30">Science: Gadgets</option>
+              <option value="31">Entertainment: Anime &amp; Manga</option>
+              <option value="32">Entertainment: Cartoon &amp; Animations</option>
+            </select>
+              <!-- <label for="start">Start</label> -->
+            <input v-on:click="startQuiz" type="button" value="Start" id="start" />
+              <!-- <button id="start">Start</button> -->
+            </form>
+          </div>
+          <!-- <h2>You picked: {{kv[category]}} </h2> -->
           <div v-if="state.started" id="qContainer" >
             <h2> Question {{state.currentQuestion+1}} of {{url.queryAmount}}</h2>
-            <div v-if="state.isMulti">
-              <p>Multiple Choice</p>
-              <p>Category: {{questions[state.currentQuestion].category}} </p>
-              <p>Questions: <span v-html="questions[state.currentQuestion].question"></span></p>
-              <ul v-if="state.currentIsLoaded">
-                <li v-for="(answer, i) in state.currentAnswers" v-bind:id="i" v-on:click="checkAnswer($event)"><span v-html="answer"></span></li>
+
+            <div v-if="state.currentIsLoaded">
+              <p v-if="state.isMulti">Multiple Choice</p>
+              <p v-if="state.isBool">True or False</p>
+              <p>{{questions[state.currentQuestion].category}} </p>
+              <p>Q: <span v-html="questions[state.currentQuestion].question"></span></p>
+
+              <ul v-if="state.currentIsLoaded" class="answer-container">
+                <li v-for="(answer, i) in state.currentAnswers" v-bind:id="i" v-on:click="checkAnswer($event)" class="answers"><span v-html="answer" class="answer-span"></span></li>
                 <li v-if="state.winner" style="background-color:green;">Correct!</li>
                 <li v-if="state.loser" style="background-color:red;">Wrong!</li>
               </ul>
-              <button v-if="state.checked" v-on:click="nextQuestion">Next Question</button>
-            </div>
-            <div v-if="state.isBool">
-              <p>I havent made a template for true/false questions yet. </p>
+
+              <button v-if="state.checked" v-on:click="nextQuestion" id="next">Next Question</button>
             </div>
 
+            <!-- <div v-if="state.isBool">
+              <ul>
+                <li id="true"></li>
+                <li id="false"></li>
+              </ul>
+            </div> -->
+
           </div>
+
+          <div id="status">
+            <div v-if="state.persistent.gameOver">
+              <p> Score: {{state.persistent.score}} out of {{state.totalQuestions}} </p>
+            </div>
+          </div>
+
         </div>
         <script src="js/vendor/modernizr-3.5.0.min.js"></script>
         <script src="js/vendor/vue.js"></script>
