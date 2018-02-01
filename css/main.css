@@ -124,12 +124,26 @@ textarea {
    font-style: normal;
  }
 
+ @font-face {
+    font-family: 'lobster';
+    src: url('../fonts/lobster-regular-webfont.woff2') format('woff2'),
+         url('../fonts/lobster-regular-webfont.woff') format('woff'),
+         url('../fonts/lobster-regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html {
   font-size: 1.3em;
   font-family: "roboto";
   color: #2a2a2a;
 }
-
+body {
+  padding-top: 20px;
+}
+h1#game-title {
+  font-family: "lobster",cursive;
+}
 #start {
   display: block;
   margin-top: 20px;
@@ -140,6 +154,8 @@ h1,h2,li,p {
   border: 1px solid black;
   border-radius: 8px;
   text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 h1,h2,p {
   margin-left: 5px;
@@ -153,20 +169,31 @@ li.answers {
   margin: 10px auto;
   /* padding-left: 3px; */
 }
-li.answers:hover, li.answers:focus {
+li.answers:active {
   box-shadow: 0 0 30px #5e5e5e
 }
 ul.answer-container {
   padding: 0;
   /* margin: 0 auto; */
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 button, input[type="button"] {
   display: block;
   margin: 0 auto;
 }
-.answer-span {
-
+#next {
+/* position: absolute;
+left: 85%;
+top: 350px;
+font-size: 1.5em; */
 }
+.small-text {
+  font-size: 0.8em;
+}
+/* .answer-span {
+
+} */
 
 
 

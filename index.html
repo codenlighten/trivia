@@ -21,7 +21,7 @@
       <div id="app">
 
 
-        <h1>Trivia Game</h1>
+        <h1 id="game-title">Just Trivia!</h1>
         <div v-if="!state.started" class="intro-container">
 
 
@@ -69,13 +69,17 @@
               <p>{{questions[state.currentQuestion].category}} </p>
               <p>Q: <span v-html="questions[state.currentQuestion].question"></span></p>
 
-              <ul v-if="state.currentIsLoaded" class="answer-container">
-                <li v-for="(answer, i) in state.currentAnswers" v-bind:id="i" v-on:click="checkAnswer($event)" class="answers"><span v-html="answer" class="answer-span"></span></li>
-                <li v-if="state.winner" style="background-color:green;">Correct!</li>
-                <li v-if="state.loser" style="background-color:red;">Wrong!</li>
-              </ul>
 
-              <button v-if="state.checked" v-on:click="nextQuestion" id="next">Next Question</button>
+
+              <ul v-if="state.currentIsLoaded" class="answer-container">
+                <li v-for="(answer, i) in state.currentAnswers" v-bind:id="'a'+i" v-on:click="checkAnswer($event)" class="answers"><span v-html="answer" class="answer-span"></span></li>
+                <li v-if="state.winner" class="answers" style="background-color:green;">Correct!</li>
+                <li v-if="state.loser" class="answers" style="background-color:red;">Wrong!</li>
+              </ul>
+              <div v-if="state.checked">
+                <button v-on:click="nextQuestion" id="next">&#187;</button>
+                <p class="small-text">Swipe Left or Right for the Next Question</p>
+              </div>
             </div>
 
             <!-- <div v-if="state.isBool">

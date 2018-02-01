@@ -36,6 +36,61 @@ var app = new Vue({
   },
 
   methods: {
+
+    detectSwipeLR: function(el,that) {
+      var swipezone = document.querySelector(el) ,
+      swipedir,
+      startX,
+      startY,
+      distX,
+      distY,
+      threshold = 150, //required min distance traveled to be considered swipe
+      restraint = 100, // maximum distance allowed at the same time in perpendicular direction
+      allowedTime = 300, // maximum time allowed to travel that distance
+      elapsedTime,
+      startTime;
+
+      swipezone.addEventListener('touchstart', function(e){
+        // debugger;
+        if (that.state.checked) {
+          var touchobj = e.changedTouches[0];
+          swipedir = 'none';
+          dist = 0;
+          startX = touchobj.pageX;
+          startY = touchobj.pageY;
+          startTime = new Date().getTime(); // record time when finger first makes contact with surface
+          e.preventDefault();
+        }
+      }, false)
+
+      swipezone.addEventListener('touchmove', function(e){
+        if (that.state.checked) {
+            e.preventDefault(); // prevent scrolling when inside DIV
+          }
+      }, false)
+
+      swipezone.addEventListener('touchend', function(e){
+        if (that.state.checked) {
+          var touchobj = e.changedTouches[0];
+          distX = touchobj.pageX - startX; // get horizontal dist traveled by finger while in contact with surface
+          distY = touchobj.pageY - startY; // get vertical dist traveled by finger while in contact with surface
+          elapsedTime = new Date().getTime() - startTime; // get time elapsed
+          if (elapsedTime <= allowedTime) { // first condition for awipe met
+              if (Math.abs(distX) >= threshold && Math.abs(distY) <= restraint && that.state.checked === true) { // 2nd condition for horizontal swipe met
+                  that.nextQuestion();
+                  //swipedir = (distX < 0)? 'left' : 'right';  if dist traveled is negative, it indicates left swipe
+              } else {e.target.click();}
+              // else if (Math.abs(distY) >= threshold && Math.abs(distX) <= restraint){ // 2nd condition for vertical swipe met
+              //     swipedir = (distY < 0)? 'up' : 'down' // if dist traveled is negative, it indicates up swipe
+              // }
+
+          }
+          // this.handleswipe(swipedir)
+          e.preventDefault();
+        }
+      }, false)
+
+    },
     startQuiz: function() {
       if (this.state.started === false) {
         this.state.persistent.score = 0;
@@ -142,61 +197,70 @@ var app = new Vue({
       //conditional to prevent players trying multiple answers on the same question
 // debugger;
           console.log(event);
-          if (event.target.id == this.state.rand || event.target.parentElement.id == this.state.rand) {
-            //click might land on the li or the span inside, quick and dirty check
+          if ( event.target.id === "a"+this.state.rand.toString() || event.target.parentElement.id === "a"+this.state.rand.toString() ) {
+            //click might land on the li or the span inside, hacky fix
             this.state.winner = true;
             //yay
-            document.getElementById(this.state.rand).style.backgroundColor = "green"
+            document.getElementById("a"+this.state.rand).style.backgroundColor = "green"
         } else {
               this.state.loser = true;
               // awww :'(
               // document.getElementById(this.state.rand).innerText += " <===" maybe dont directly modify the dom when ur using vue, huh?
               // this.state.currentAnswers[this.state.rand] += " <==="
-              document.getElementById(this.state.rand).style.backgroundColor = "yellow"
+              document.getElementById("a"+this.state.rand).style.backgroundColor = "yellow"
               //point out the correct answer...cuz learning
         }
-        this.state.checked = true
+        this.state.checked = true;
         //signifies that this question has been checked
+
       } else { console.log("nice try") }
     },
     nextQuestion: function() {
-      if (this.state.winner===true) {
-        this.state.persistent.score += 1
-      }
-      //reset answer backgroundColor
-      const answers = document.getElementsByClassName("answers");
-      for (i=0;i<answers.length;i++) {
-        answers[i].style.backgroundColor = "white"
-      }
-      //reset question state
-      this.state.started = false;
-      this.state.isBool = false;
-      this.state.isMulti = false;
-      this.state.currentAnswers =  {};
-      this.state.currentIsLoaded = false;
-
-      this.state.checked = false;
-      this.state.winner = false;
-      this.state.loser = false;
-      this.state.rand = 0;
-
-      if (this.state.currentQuestion < this.state.totalQuestions-1) {
-      //increment current question counter if not at the end
-        this.state.currentQuestion += 1;
-        this.processQuestion();
+      if (this.state.checked === false) {
+          console.log("Finish this question first");
+          return;
       } else {
-        this.endGame()
-      }
-    },
+          if (this.state.winner===true) {
+            this.state.persistent.score += 1
+          }
+          //reset answer backgroundColor
+          const answers = document.getElementsByClassName("answers");
+          for (i=0;i<answers.length;i++) {
+            answers[i].style.backgroundColor = "white";
+          }
+          //reset question state
+          this.state.started = false;
+          this.state.isBool = false;
+          this.state.isMulti = false;
+          this.state.currentAnswers =  {};
+          this.state.currentIsLoaded = false;
+
+          this.state.checked = false;
+          this.state.winner = false;
+          this.state.loser = false;
+          this.state.rand = 0;
+
+          if (this.state.currentQuestion < this.state.totalQuestions-1) {
+          //increment current question counter if not at the end
+            this.state.currentQuestion += 1;
+            this.processQuestion();
+          } else {
+            this.endGame();
+          }
+    }},
     endGame: function() {
       this.state.persistent.gameOver = true;
 
       this.state.currentQuestion = 0;
-      //todo something
-      console.log("Game over, man!\nGame over!")
+      //do something
+      console.log("Game over, man!\nGame over!");
     }
 
 
   },
-  mounted() {this.state.totalQuestions = parseInt(this.url.queryAmount)}
+  mounted() {
+    this.state.totalQuestions = parseInt(this.url.queryAmount);
+    this.detectSwipeLR("#app", this);
+    //swipe handler that calls nextQuestion() on a L or R swipe
+  }
 })
