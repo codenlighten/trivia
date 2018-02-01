@@ -64,10 +64,10 @@
             <h2> Question {{state.currentQuestion+1}} of {{url.queryAmount}}</h2>
 
             <div v-if="state.currentIsLoaded">
-              <p v-if="state.isMulti">Multiple Choice</p>
-              <p v-if="state.isBool">True or False</p>
-              <p>{{questions[state.currentQuestion].category}} </p>
-              <p>Q: <span v-html="questions[state.currentQuestion].question"></span></p>
+              <p v-if="state.isMulti" class="small-text">Multiple Choice</p>
+              <p v-if="state.isBool" class="small-text">True or False</p>
+              <p class="small-text">{{questions[state.currentQuestion].category}} </p>
+              <p><span class="small-text">Q:</span> <span v-html="questions[state.currentQuestion].question"></span></p>
 
 
 
@@ -77,8 +77,8 @@
                 <li v-if="state.loser" class="answers" style="background-color:red;">Wrong!</li>
               </ul>
               <div v-if="state.checked">
-                <button v-on:click="nextQuestion" id="next">&#187;</button>
-                <p class="small-text">Swipe Left or Right for the Next Question</p>
+                <p class="small-text"> &#171; Swipe for the next question &#187;</p>
+                <button v-on:click="nextQuestion" class="small-text" id="next">next &#187;</button>
               </div>
             </div>
 
