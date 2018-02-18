@@ -139,6 +139,7 @@ background: radial-gradient(circle farthest-side at top center, #87ceeb 0%, #19b
   font-size: 1.3em;
   font-family: "roboto";
   color: #2a2a2a;
+  height: 100%;
 }
 
 h1#game-title {
