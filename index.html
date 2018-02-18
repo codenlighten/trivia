@@ -60,14 +60,25 @@
             </form>
           </div>
           <!-- <h2>You picked: {{kv[category]}} </h2> -->
-          <div v-if="state.started" id="qContainer" >
-            <h2> Question {{state.currentQuestion+1}} of {{url.queryAmount}}</h2>
+          <div v-if="state.started" id="container" >
 
-            <div v-if="state.currentIsLoaded">
-              <p v-if="state.isMulti" class="small-text">Multiple Choice</p>
-              <p v-if="state.isBool" class="small-text">True or False</p>
-              <p class="small-text">{{questions[state.currentQuestion].category}} </p>
-              <p><span class="small-text">Q:</span> <span v-html="questions[state.currentQuestion].question"></span></p>
+
+            <div v-if="state.currentIsLoaded" class="loaded">
+              <div>
+                <h2> Question {{state.currentQuestion+1}} of {{url.queryAmount}}</h2>
+              </div>
+              <div>
+                <p v-if="state.isMulti" class="small-text">Multiple Choice</p>
+              </div>
+              <div>
+                <p v-if="state.isBool" class="small-text">True or False</p>
+              </div>
+              <div>
+                <p class="small-text">{{questions[state.currentQuestion].category}} </p>
+              </div>
+              <div>
+                <p><span class="small-text">Q:</span> <span v-html="questions[state.currentQuestion].question"></span></p>
+              </div>
 
 
 

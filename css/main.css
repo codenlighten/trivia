@@ -14,7 +14,7 @@ html {
     color: #222;
     font-size: 1em;
     line-height: 1.4;
-    background-color: skyBlue;
+    /* background-color: skyBlue; */
 }
 
 /*
@@ -134,6 +134,8 @@ textarea {
 }
 
 html {
+  background: #87ceeb;
+background: radial-gradient(circle farthest-side at top center, #87ceeb 0%, #19bcff 40%, #00b5ff 80%) fixed;
   font-size: 1.3em;
   font-family: "roboto";
   color: #2a2a2a;
@@ -141,6 +143,7 @@ html {
 
 h1#game-title {
   font-family: "lobster",cursive;
+  color: #FF8700;
 }
 h2 {
   font-size: 1.2em;
@@ -153,14 +156,27 @@ h2 {
 h1,h2,li,p {
   background-color: rgba(255,255,255,0.8);
   border: 1px solid black;
-  border-radius: 8px;
+  border-radius: 5px;
   text-align: center;
   margin-top: 10px;
   margin-bottom: 10px;
+  box-shadow: 4px 4px 4px #333;
 }
 h1,h2,p {
   margin-left: 5px;
   margin-right: 5px;
+}
+.loaded div{
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+
+}
+.loaded h2, .loaded p {
+  /* display block; */
+  padding-left: 5px;
+  padding-right: 5px;
+
 }
 li.answers {
   display: block;
@@ -171,7 +187,7 @@ li.answers {
   /* padding-left: 3px; */
 }
 li.answers:active {
-  box-shadow: 0 0 30px #5e5e5e
+  box-shadow: 0 0 30px #5e5e5e;
 }
 ul.answer-container {
   padding: 0;

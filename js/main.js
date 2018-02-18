@@ -38,6 +38,7 @@ var app = new Vue({
   methods: {
 
     detectSwipeLR: function(el,that) {
+      //detect swipe and call nextQuestion(), code simplified and adaptded from the interwebs
       var swipezone = document.querySelector(el) ,
       swipedir,
       startX,
@@ -59,13 +60,13 @@ var app = new Vue({
           startX = touchobj.pageX;
           startY = touchobj.pageY;
           startTime = new Date().getTime(); // record time when finger first makes contact with surface
-          e.preventDefault();
+          // e.preventDefault();
         }
       }, false)
 
       swipezone.addEventListener('touchmove', function(e){
         if (that.state.checked) {
-            e.preventDefault(); // prevent scrolling when inside DIV
+            // e.preventDefault(); // prevent scrolling when inside DIV
           }
       }, false)
 
@@ -86,7 +87,7 @@ var app = new Vue({
 
           }
           // this.handleswipe(swipedir)
-          e.preventDefault();
+          // e.preventDefault();
         }
       }, false)
 
