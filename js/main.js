@@ -46,7 +46,7 @@ var app = new Vue({
       distX,
       distY,
       threshold = 150, //required min distance traveled to be considered swipe
-      restraint = 100, // maximum distance allowed at the same time in perpendicular direction
+      restraint = 125, // maximum distance allowed at the same time in perpendicular direction
       allowedTime = 300, // maximum time allowed to travel that distance
       elapsedTime,
       startTime;
@@ -208,8 +208,9 @@ var app = new Vue({
               // awww :'(
               // document.getElementById(this.state.rand).innerText += " <===" maybe dont directly modify the dom when ur using vue, huh?
               // this.state.currentAnswers[this.state.rand] += " <==="
-              document.getElementById("a"+this.state.rand).style.backgroundColor = "yellow"
-              //point out the correct answer...cuz learning
+
+              // document.getElementById("a"+this.state.rand).style.backgroundColor = "yellow";
+              //Uncomment this to point out the correct answer. I found it reduces replayability
         }
         this.state.checked = true;
         //signifies that this question has been checked
@@ -227,7 +228,7 @@ var app = new Vue({
           //reset answer backgroundColor
           const answers = document.getElementsByClassName("answers");
           for (i=0;i<answers.length;i++) {
-            answers[i].style.backgroundColor = "white";
+            answers[i].style.backgroundColor = "rgba(255,255,255,0.4)";
           }
           //reset question state
           this.state.started = false;
@@ -261,7 +262,7 @@ var app = new Vue({
   },
   mounted() {
     this.state.totalQuestions = parseInt(this.url.queryAmount);
-    this.detectSwipeLR("#app", this);
+    this.detectSwipeLR("html", this);
     //swipe handler that calls nextQuestion() on a L or R swipe
   }
 })

@@ -33,7 +33,7 @@
               <option value="10">Entertainment: Books</option>
               <option value="11">Entertainment: Film</option>
               <option value="12">Entertainment: Music</option>
-              <option value="13">Entertainment: Musicals &amp; Theatres</option>
+              <option value="13">Musicals &amp; Theatres</option>
               <option value="14">Entertainment: Television</option>
               <option value="15">Entertainment: Video Games</option>
               <option value="16">Entertainment: Board Games</option>
@@ -51,13 +51,29 @@
               <option value="28">Vehicles</option>
               <option value="29">Entertainment: Comics</option>
               <option value="30">Science: Gadgets</option>
-              <option value="31">Entertainment: Anime &amp; Manga</option>
-              <option value="32">Entertainment: Cartoon &amp; Animations</option>
+              <option value="31">Anime &amp; Manga</option>
+              <option value="32">Cartoon &amp; Animations</option>
             </select>
               <!-- <label for="start">Start</label> -->
             <input v-on:click="startQuiz" type="button" value="Start" id="start" />
               <!-- <button id="start">Start</button> -->
             </form>
+
+            <div id="status">
+              <div v-if="state.persistent.gameOver">
+                <p> Score: {{state.persistent.score}} out of {{state.totalQuestions}} </p>
+              </div>
+            </div>
+
+            <div class="how-to-play">
+              <h2><span class="huh" aria-hidden="true">?</span> How to play:</h2>
+              <ol class="instructions">
+                <li><span class="larger">Select a category and press start</span></li>
+                <li><span class="larger">Click on the answer that you think is correct</span></li>
+                <li><span class="larger">Press </span><span id="faux-button">next >></span><span class="larger"> or swipe for the next question</span></li>
+              </ol>
+
+            </div>
           </div>
           <!-- <h2>You picked: {{kv[category]}} </h2> -->
           <div v-if="state.started" id="container" >
@@ -82,13 +98,15 @@
 
 
 
-              <ul v-if="state.currentIsLoaded" class="answer-container">
-                <li v-for="(answer, i) in state.currentAnswers" v-bind:id="'a'+i" v-on:click="checkAnswer($event)" class="answers"><span v-html="answer" class="answer-span"></span></li>
-                <li v-if="state.winner" class="answers" style="background-color:green;">Correct!</li>
-                <li v-if="state.loser" class="answers" style="background-color:red;">Wrong!</li>
-              </ul>
+              <div class="answer-container" v-if="state.currentIsLoaded">
+                <ul>
+                  <li v-for="(answer, i) in state.currentAnswers" v-bind:id="'a'+i" v-on:click="checkAnswer($event)" class="answers"><span v-html="answer" class="answer-span"></span></li>
+                </ul>
+                <p v-if="state.winner" class="answers" style="background-color:green;">Correct!</p>
+                <p v-if="state.loser" class="answers" style="background-color:red;">Wrong!</p>
+              </div>
               <div v-if="state.checked">
-                <p class="small-text"> &#171; Swipe for the next question &#187;</p>
+                <!-- <p class="small-text"> &#171; Swipe for the next question &#187;</p> -->
                 <button v-on:click="nextQuestion" class="small-text" id="next">next &#187;</button>
               </div>
             </div>
@@ -102,11 +120,7 @@
 
           </div>
 
-          <div id="status">
-            <div v-if="state.persistent.gameOver">
-              <p> Score: {{state.persistent.score}} out of {{state.totalQuestions}} </p>
-            </div>
-          </div>
+
 
         </div>
         <script src="js/vendor/modernizr-3.5.0.min.js"></script>
