@@ -197,7 +197,7 @@ var app = new Vue({
       if (this.state.checked === false) {
       //conditional to prevent players trying multiple answers on the same question
 // debugger;
-          console.log(event);
+          // console.log(event);
           if ( event.target.id === "a"+this.state.rand.toString() || event.target.parentElement.id === "a"+this.state.rand.toString() ) {
             //click might land on the li or the span inside, hacky fix
             this.state.winner = true;
