@@ -1,7 +1,7 @@
 # Trivia VueJS
 
 A browser based trivia game made with VueJS and the open trivia database.
-it is currently only styled for mobile.
+It is intended for mobile browsers but should work on the desktop, too.
 
 
 I made this because I like to play a trivia game sometimes, but I couldn't find a simple one that wasn't loaded with ads and social integrations and crap.
