@@ -145,8 +145,11 @@ background: radial-gradient(circle farthest-side at top center, #87ceeb 0%, #19b
 #app {
   max-width: 800px;
   margin: 0 auto;
-    text-align: "center";
+   
 }
+
+#sub-title{
+ text-align: "center";}
 h1#game-title {
   font-family: "lobster",cursive;
   color: #FF8700;
