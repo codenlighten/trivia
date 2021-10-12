@@ -11,11 +11,10 @@
    ========================================================================== */
 
 html {
-
-    /* color: white; */
+    color: white;
     font-size: 1em;
     line-height: 1.4;
-    /* background-color: skyBlue; */
+    background-color: black;
 }
 
 /*
@@ -29,12 +28,12 @@ html {
  */
 
 ::-moz-selection {
-    background: #b3d4fc;
+    background: black;
     text-shadow: none;
 }
 
 ::selection {
-    background: #b3d4fc;
+    background: black;
     text-shadow: none;
 }
 
@@ -90,221 +89,208 @@ textarea {
 
 .browserupgrade {
     margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
+    background: black;
+    color: white;
     padding: 0.2em 0;
 }
 
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
- @font-face {
-   font-family: 'roboto';
-   src: url('../fonts/roboto-bold-webfont.woff2') format('woff2'),
-   url('../fonts/roboto-bold-webfont.woff') format('woff'),
-   url('../fonts/roboto-bold-webfont.ttf') format('truetype');
-   font-weight: bold;
-   font-style: normal;
- }
+@font-face {
+    font-family: "roboto";
+    src: url("../fonts/roboto-bold-webfont.woff2") format("woff2"),
+        url("../fonts/roboto-bold-webfont.woff") format("woff"),
+        url("../fonts/roboto-bold-webfont.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
 
- @font-face {
-   font-family: 'roboto';
-   src: url('../fonts/roboto-italic-webfont.woff2') format('woff2'),
-   url('../fonts/roboto-italic-webfont.woff') format('woff'),
-   url('../fonts/roboto-italic-webfont.ttf') format('truetype');
-   font-weight: normal;
-   font-style: italic;
- }
+@font-face {
+    font-family: "roboto";
+    src: url("../fonts/roboto-italic-webfont.woff2") format("woff2"),
+        url("../fonts/roboto-italic-webfont.woff") format("woff"),
+        url("../fonts/roboto-italic-webfont.ttf") format("truetype");
+    font-weight: normal;
+    font-style: italic;
+}
 
- @font-face {
-   font-family: 'roboto';
-   src: url('../fonts/roboto-regular-webfont.woff2') format('woff2'),
-   url('../fonts/roboto-regular-webfont.woff') format('woff'),
-   url('../fonts/roboto-regular-webfont.ttf') format('truetype');
-   font-weight: normal;
-   font-style: normal;
- }
+@font-face {
+    font-family: "roboto";
+    src: url("../fonts/roboto-regular-webfont.woff2") format("woff2"),
+        url("../fonts/roboto-regular-webfont.woff") format("woff"),
+        url("../fonts/roboto-regular-webfont.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
 
- @font-face {
-    font-family: 'lobster';
-    src: url('../fonts/lobster-regular-webfont.woff2') format('woff2'),
-         url('../fonts/lobster-regular-webfont.woff') format('woff'),
-         url('../fonts/lobster-regular-webfont.ttf') format('truetype');
+@font-face {
+    font-family: "lobster";
+    src: url("../fonts/lobster-regular-webfont.woff2") format("woff2"),
+        url("../fonts/lobster-regular-webfont.woff") format("woff"),
+        url("../fonts/lobster-regular-webfont.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
 }
 
 html {
-  background: #87ceeb;
-background: radial-gradient(circle farthest-side at top center, #87ceeb 0%, #19bcff 40%, #00b5ff 80%) fixed;
-  font-size: 1.3em;
-  font-family: "roboto";
-  color: #404040;
-  height: 100%;
+    background: black;
+    font-size: 1.3em;
+    font-family: "roboto";
+    color: white;
+    height: 100%;
 }
 #app {
-  max-width: 800px;
-  margin: 0 auto;
-   
+    max-width: 800px;
+    margin: 0 auto;
 }
-
-
 h1#game-title {
-  font-family: "lobster",cursive;
-  color: #FF8700;
-  background-color: rgba(255,255,255,0.6);
+    font-family: "lobster", cursive;
+    color: rgb(57, 194, 80);
+    background-color: rgba(13, 185, 177, 0.6);
 }
-form#selection select{
-  background-color: rgba(255,255,255,0.5);
-  /* display: block; */
-  /* margin: 0 auto; */
-  /* margin:3px; */
-  /* width: 95%; */
+form#selection select {
+    background-color: rgba(13, 185, 177, 0.6);
+    /* display: block; */
+    /* margin: 0 auto; */
+    /* margin:3px; */
+    /* width: 95%; */
 }
-form#selection select, form#selection label {
-  display: block;
-  margin: 0 auto;
-  text-align: center;
+form#selection select,
+form#selection label {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
 }
 .intro-container {
-  /* margin:3px; */
-  /* margin: 0 auto; */
+    /* margin:3px; */
+    /* margin: 0 auto; */
 }
 h2 {
-  font-size: 1.2em;
+    font-size: 1.2em;
 }
 #start {
-  display: block;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  background-color: rgba(255,255,255,0.5);
-  border:1px solid grey;
-  border-radius: 4px;
-  /* margin: 3px; */
-  line-height: 1.5;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: rgba(13, 185, 177, 0.6);
+    border: 1px solid grey;
+    border-radius: 4px;
+    /* margin: 3px; */
+    line-height: 1.5;
 }
 #status div {
-  margin: 0 auto;
-  margin-bottom: 15px;
-  width: 60%;
-
+    margin: 0 auto;
+    margin-bottom: 15px;
+    width: 60%;
 }
 #status div p {
-  background-color: rgba(255, 255, 255, 0.7);
-  line-height: 2;
+    background-color: rgba(13, 185, 177, 0.6);
+    line-height: 2;
 }
 .how-to-play {
-  background-color: rgba(255, 255, 255, 0.3);
-  padding:5px 0;
+    background-color: rgba(13, 185, 177, 0.6);
+    padding: 5px 0;
 }
 span.huh {
-  /* line-height: 2; */
-  vertical-align: middle;
-  padding: 0 7px;
-  font-size: 0.7em;
-  border: 1px solid grey;
-  border-radius: 100%;
+    /* line-height: 2; */
+    vertical-align: middle;
+    padding: 0 7px;
+    font-size: 0.7em;
+    border: 1px solid grey;
+    border-radius: 100%;
 }
 ol.instructions {
-  /* padding:0; */
-  /* -webkit-padding-start: 0; */
-  font-size: 0.6em;
-  padding-left: 6%;
-  width:90%;
+    /* padding:0; */
+    /* -webkit-padding-start: 0; */
+    font-size: 0.6em;
+    padding-left: 6%;
+    width: 90%;
 }
 /* ol.instructions li {
   font-size: 1em;
 } */
 span.larger {
-  font-size: 1.5em;
+    font-size: 1.5em;
 }
 span#faux-button {
-  background-color: rgba(255, 255, 255, 0.5);
-  padding: 1px;
-  margin:1px;
-  border-radius: 3px;
-  border:0.5px solid grey;
+    background-color: rgba(13, 185, 177, 0.6);
+    padding: 1px;
+    margin: 1px;
+    border-radius: 3px;
+    border: 0.5px solid grey;
 }
 
-h1,h2,li,p {
-  background-color: rgba(255,255,255,0.5);
-  /* border: 1px solid black; */
-  border-radius: 4px;
-  text-align: center;
-  margin-top: 3px;
-  margin-bottom: 3px;
-  /* box-shadow: 4px 4px 4px #333; */
+h1,
+h2,
+li,
+p {
+    background-color: rgba(13, 185, 177, 0.6);
+    /* border: 1px solid black; */
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    /* box-shadow: 4px 4px 4px #333; */
 }
-h1,h2,p {
-  margin-left: 5px;
-  margin-right: 5px;
+h1,
+h2,
+p {
+    margin-left: 5px;
+    margin-right: 5px;
 }
-.loaded div:not(.answer-container){
-  display: flex;
-  /* flex-direction: column; */
-  justify-content: center;
-
+.loaded div:not(.answer-container) {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
 }
-.loaded h2, .loaded p {
-  /* display block; */
-  padding-left: 5px;
-  padding-right: 5px;
-
+.loaded h2,
+.loaded p {
+    /* display block; */
+    padding-left: 5px;
+    padding-right: 5px;
 }
 li.answers {
-  display: block;
-  list-style-type: none;
-  line-height: 1.3;
-  width: 60%;
-  margin: 9px auto;
-  border:1px solid grey;
-  background-color: rgba(255,255,255,0.5);
-  /* padding-left: 3px; */
+    display: block;
+    list-style-type: none;
+    line-height: 1.3;
+    width: 60%;
+    margin: 9px auto;
+    border: 1px solid grey;
+    background-color: rgba(13, 185, 177, 0.6);
+    /* padding-left: 3px; */
 }
 li.answers:active {
-  /* box-shadow: 0 0 30px #5e5e5e; */
-  border:1px solid darkGrey;
-  background-color: rgba(255, 255, 255, 0.6);
+    /* box-shadow: 0 0 30px #5e5e5e; */
+    border: 1px solid darkGrey;
+    background-color: rgba(13, 185, 177, 0.6);
 }
 .answer-container ul {
-  display: block;
-  padding: 0;
-  width: 100%;
-  /* margin: 0 auto; */
-  margin-top: 3px;
-  margin-bottom: 3px;
+    display: block;
+    padding: 0;
+    width: 100%;
+    /* margin: 0 auto; */
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
-button, input[type="button"] {
-  display: block;
-  margin: 0 auto;
+button,
+input[type="button"] {
+    display: block;
+    margin: 0 auto;
 }
 #next {
-  background-color: rgba(255,255,255,0.4);
-  border:1px solid grey;
-  border-radius: 4px;
-  margin: 3px;
-  line-height: 1.5;
+    background-color: rgba(13, 185, 177, 0.6);
+    border: 1px solid grey;
+    border-radius: 4px;
+    margin: 3px;
+    line-height: 1.5;
 }
 .small-text {
-  font-size: 0.8em;
+    font-size: 0.8em;
 }
 /* .answer-span {
 
 } */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* ==========================================================================
    Helper classes
@@ -401,9 +387,9 @@ button, input[type="button"] {
 }
 
 @media print,
-       (-webkit-min-device-pixel-ratio: 1.25),
-       (min-resolution: 1.25dppx),
-       (min-resolution: 120dpi) {
+    (-webkit-min-device-pixel-ratio: 1.25),
+    (min-resolution: 1.25dppx),
+    (min-resolution: 120dpi) {
     /* Style adjustments for high resolution devices */
 }
 
@@ -418,7 +404,7 @@ button, input[type="button"] {
     *:before,
     *:after {
         background: transparent !important;
-        color: #000 !important; /* Black prints faster:
+        color: white !important; /* Black prints faster:
                                    http://www.sanbeiji.com/archives/953 */
         box-shadow: none !important;
         text-shadow: none !important;

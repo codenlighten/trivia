@@ -1,135 +1,194 @@
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>TriviaOnchain</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <title></title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <!-- <link rel="manifest" href="site.webmanifest"> -->
-        <link rel="apple-touch-icon" href="icon.png">
+        <link rel="apple-touch-icon" href="icon.png" />
         <!-- Place favicon.ico in the root directory -->
 
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/normalize.css" />
+        <link rel="stylesheet" href="css/main.css" />
     </head>
     <body>
         <!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+            <p class="browserupgrade">
+                You are using an <strong>outdated</strong> browser. Please
+                <a href="https://browsehappy.com/">upgrade your browser</a> to
+                improve your experience and security.
+            </p>
         <![endif]-->
-      <div id="app">
+        <div id="app">
+            <br />
+            <h1 id="game-title">Just Trivia!</h1>
+            <div v-if="!state.started" class="intro-container">
+                <form id="selection">
+                    <label for="category">Select a category:</label>
+                    <select v-model="category" name="category">
+                        <option value="any">Any Category</option>
+                        <option value="9">General Knowledge</option>
+                        <option value="10">Entertainment: Books</option>
+                        <option value="11">Entertainment: Film</option>
+                        <option value="12">Entertainment: Music</option>
+                        <option value="13">Musicals &amp; Theatres</option>
+                        <option value="14">Entertainment: Television</option>
+                        <option value="15">Entertainment: Video Games</option>
+                        <option value="16">Entertainment: Board Games</option>
+                        <option value="17">Science &amp; Nature</option>
+                        <option value="18">Science: Computers</option>
+                        <option value="19">Science: Mathematics</option>
+                        <option value="20">Mythology</option>
+                        <option value="21">Sports</option>
+                        <option value="22">Geography</option>
+                        <option value="23">History</option>
+                        <option value="24">Politics</option>
+                        <option value="25">Art</option>
+                        <option value="26">Celebrities</option>
+                        <option value="27">Animals</option>
+                        <option value="28">Vehicles</option>
+                        <option value="29">Entertainment: Comics</option>
+                        <option value="30">Science: Gadgets</option>
+                        <option value="31">Anime &amp; Manga</option>
+                        <option value="32">Cartoon &amp; Animations</option>
+                    </select>
+                    <!-- <label for="start">Start</label> -->
+                    <input
+                        v-on:click="startQuiz"
+                        type="button"
+                        value="Start"
+                        id="start"
+                    />
+                    <!-- <button id="start">Start</button> -->
+                </form>
 
+                <div id="status">
+                    <div v-if="state.persistent.gameOver">
+                        <p>
+                            Score: {{state.persistent.score}} out of
+                            {{state.totalQuestions}}
+                        </p>
+                    </div>
+                </div>
 
-        <h1 id="game-title">Trivia Onchain!</h1>
-         
-        <div v-if="!state.started" class="intro-container">
-
-
-          <form id="selection">
-            <label for="category">Select a category:</label>
-            <select v-model="category" name="category">
-              <option value="any">Any Category</option>
-    		      <option value="9">General Knowledge</option>
-              <option value="10">Entertainment: Books</option>
-              <option value="11">Entertainment: Film</option>
-              <option value="12">Entertainment: Music</option>
-              <option value="13">Musicals &amp; Theatres</option>
-              <option value="14">Entertainment: Television</option>
-              <option value="15">Entertainment: Video Games</option>
-              <option value="16">Entertainment: Board Games</option>
-              <option value="17">Science &amp; Nature</option>
-              <option value="18">Science: Computers</option>
-              <option value="19">Science: Mathematics</option>
-              <option value="20">Mythology</option>
-              <option value="21">Sports</option>
-              <option value="22">Geography</option>
-              <option value="23">History</option>
-              <option value="24">Politics</option>
-              <option value="25">Art</option>
-              <option value="26">Celebrities</option>
-              <option value="27">Animals</option>
-              <option value="28">Vehicles</option>
-              <option value="29">Entertainment: Comics</option>
-              <option value="30">Science: Gadgets</option>
-              <option value="31">Anime &amp; Manga</option>
-              <option value="32">Cartoon &amp; Animations</option>
-            </select>
-              <!-- <label for="start">Start</label> -->
-            <input v-on:click="startQuiz" type="button" value="Start" id="start" />
-              <!-- <button id="start">Start</button> -->
-            </form>
-
-            <div id="status">
-              <div v-if="state.persistent.gameOver">
-                <p> Score: {{state.persistent.score}} out of {{state.totalQuestions}} </p>
-              </div>
+                <div class="how-to-play">
+                    <h2>
+                        <span class="huh" aria-hidden="true">?</span> How to
+                        play:
+                    </h2>
+                    <ol class="instructions">
+                        <li>
+                            <span class="larger"
+                                >Select a category and press start</span
+                            >
+                        </li>
+                        <li>
+                            <span class="larger"
+                                >Click on the answer that you think is
+                                correct</span
+                            >
+                        </li>
+                        <li>
+                            <span class="larger">Press </span
+                            ><span id="faux-button">next >></span
+                            ><span class="larger">
+                                or swipe for the next question</span
+                            >
+                        </li>
+                    </ol>
+                </div>
             </div>
+            <!-- <h2>You picked: {{kv[category]}} </h2> -->
+            <div v-if="state.started" id="container">
+                <div v-if="state.currentIsLoaded" class="loaded">
+                    <div>
+                        <h2>
+                            Question {{state.currentQuestion+1}} of
+                            {{url.queryAmount}}
+                        </h2>
+                    </div>
+                    <div>
+                        <p v-if="state.isMulti" class="small-text">
+                            Multiple Choice
+                        </p>
+                    </div>
+                    <div>
+                        <p v-if="state.isBool" class="small-text">
+                            True or False
+                        </p>
+                    </div>
+                    <div>
+                        <p class="small-text">
+                            {{questions[state.currentQuestion].category}}
+                        </p>
+                    </div>
+                    <div>
+                        <p>
+                            <span class="small-text">Q:</span>
+                            <span
+                                v-html="questions[state.currentQuestion].question"
+                            ></span>
+                        </p>
+                    </div>
 
-            <div class="how-to-play">
-              <h2><span class="huh" aria-hidden="true">?</span> How to play:</h2>
-              <ol class="instructions">
-                <li><span class="larger">Select a category and press start</span></li>
-                <li><span class="larger">Click on the answer that you think is correct</span></li>
-                <li><span class="larger">Press </span><span id="faux-button">next >></span><span class="larger"> or swipe for the next question</span></li>
-              </ol>
+                    <div class="answer-container" v-if="state.currentIsLoaded">
+                        <ul>
+                            <li
+                                v-for="(answer, i) in state.currentAnswers"
+                                v-bind:id="'a'+i"
+                                v-on:click="checkAnswer($event)"
+                                class="answers"
+                            >
+                                <span
+                                    v-html="answer"
+                                    class="answer-span"
+                                ></span>
+                            </li>
+                        </ul>
+                        <p
+                            v-if="state.winner"
+                            class="answers"
+                            style="background-color: green"
+                        >
+                            Correct!
+                        </p>
+                        <p
+                            v-if="state.loser"
+                            class="answers"
+                            style="background-color: red"
+                        >
+                            Wrong!
+                        </p>
+                    </div>
+                    <div v-if="state.checked">
+                        <!-- <p class="small-text"> &#171; Swipe for the next question &#187;</p> -->
+                        <button
+                            v-on:click="nextQuestion"
+                            class="small-text"
+                            id="next"
+                        >
+                            next &#187;
+                        </button>
+                    </div>
+                </div>
 
-            </div>
-          </div>
-          <!-- <h2>You picked: {{kv[category]}} </h2> -->
-          <div v-if="state.started" id="container" >
-
-
-            <div v-if="state.currentIsLoaded" class="loaded">
-              <div>
-                <h2> Question {{state.currentQuestion+1}} of {{url.queryAmount}}</h2>
-              </div>
-              <div>
-                <p v-if="state.isMulti" class="small-text">Multiple Choice</p>
-              </div>
-              <div>
-                <p v-if="state.isBool" class="small-text">True or False</p>
-              </div>
-              <div>
-                <p class="small-text">{{questions[state.currentQuestion].category}} </p>
-              </div>
-              <div>
-                <p><span class="small-text">Q:</span> <span v-html="questions[state.currentQuestion].question"></span></p>
-              </div>
-
-
-
-              <div class="answer-container" v-if="state.currentIsLoaded">
-                <ul>
-                  <li v-for="(answer, i) in state.currentAnswers" v-bind:id="'a'+i" v-on:click="checkAnswer($event)" class="answers"><span v-html="answer" class="answer-span"></span></li>
-                </ul>
-                <p v-if="state.winner" class="answers" style="background-color:green;">Correct!</p>
-                <p v-if="state.loser" class="answers" style="background-color:red;">Wrong!</p>
-              </div>
-              <div v-if="state.checked">
-                <!-- <p class="small-text"> &#171; Swipe for the next question &#187;</p> -->
-                <button v-on:click="nextQuestion" class="small-text" id="next">next &#187;</button>
-              </div>
-            </div>
-
-            <!-- <div v-if="state.isBool">
+                <!-- <div v-if="state.isBool">
               <ul>
                 <li id="true"></li>
                 <li id="false"></li>
               </ul>
             </div> -->
-
-          </div>
-
-
-
+            </div>
         </div>
         <script src="js/vendor/modernizr-3.5.0.min.js"></script>
-        <script src="https://bico.media/d066b8d1aac051051ad2a24769e696da5c4a447c6188e22762d5ff80f85ca498"></script>
+        <script src="js/vendor/vue.js"></script>
         <script src="js/vendor/vue-resource.js"></script>
         <!-- <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\/script>')</script> -->
         <script src="js/plugins.js"></script>
-        <script src="https://bico.media/5abe43e6338c5f8dd7b22c321eb9a7073b34eeea29c850fa6c388faf6c2608f4"></script>
+        <script src="https://bico.media/beb8c74e3fc6743d7f4df348de412e4384fa01e92d438131d5187d39824aeb00"></script>
 
         <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
         <!-- <script>
