@@ -145,7 +145,7 @@ html {
     margin: 0 auto;
 }
 h1#game-title {
-    font-family: "lobster", cursive;
+    font-family: 'Games', sans-serif;                                          
     color: rgb(57, 194, 80);
     background-color: rgba(13, 185, 177, 0.6);
 }
