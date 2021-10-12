@@ -133,6 +133,13 @@ textarea {
     font-style: normal;
 }
 
+@font-face {
+    font-family: "Games";
+    src: url("../fonts/Games-Italic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 html {
     background: black;
     font-size: 1.3em;
