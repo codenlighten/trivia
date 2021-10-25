@@ -206,8 +206,8 @@ var app = new Vue({
         } else {
               this.state.loser = true;
               // awww :'(
-              // document.getElementById(this.state.rand).innerText += " <===" maybe dont directly modify the dom when ur using vue, huh?
-              // this.state.currentAnswers[this.state.rand] += " <==="
+              document.getElementById(this.state.rand).innerText += " <===" maybe dont directly modify the dom when ur using vue, huh?
+              this.state.currentAnswers[this.state.rand] += " <==="
 
                document.getElementById("a"+this.state.rand).style.backgroundColor = "yellow";
               //Uncomment this to point out the correct answer. I found it reduces replayability
